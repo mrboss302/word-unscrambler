@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ===================== SEO: PRIMARY META ===================== -->
+  <title>Anagram Generator – Make Words From Letters | Word Puzzle Solver</title>
+  <meta name="description" content="Use this free anagram generator to rearrange letters, find anagrams, and discover words hidden inside names, phrases, and letter sets." />
+  <link rel="canonical" href="https://thewordpuzzlesolver.com/anagram-generator/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#127a6b" />
+
+  <!-- ===================== SEO: OPEN GRAPH ===================== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Word Puzzle Solver" />
+  <meta property="og:title" content="Anagram Generator – Make Words From Letters" />
+  <meta property="og:description" content="Rearrange letters to find anagrams and sub-anagrams hidden in names, phrases, and letter sets." />
+  <meta property="og:url" content="https://thewordpuzzlesolver.com/anagram-generator/" />
+  <meta property="og:image" content="https://thewordpuzzlesolver.com/og-word-unscrambler.png" />
+
+  <!-- ===================== SEO: TWITTER CARD ===================== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Anagram Generator – Make Words From Letters" />
+  <meta name="twitter:description" content="Rearrange letters to find anagrams and sub-anagrams hidden in names, phrases, and letter sets." />
+  <meta name="twitter:image" content="https://thewordpuzzlesolver.com/og-word-unscrambler.png" />
+
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/assets/js/dictionary.js" defer></script>
+  <script src="/assets/js/word-tools.js" defer></script>
+  <script src="/anagram-generator/script.js" defer></script>
+  <script src="/assets/js/ads.js" defer></script>
+
+  <!-- ===================== GOOGLE ADSENSE LOADER ===================== -->
+  <!-- DEV NOTE: replace ca-pub-XXXXXXXXXXXXXXXX with your real publisher ID. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+       crossorigin="anonymous"></script>
+
+  <!-- ===================== SEO: JSON-LD STRUCTURED DATA ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Anagram Generator",
+    "url": "https://thewordpuzzlesolver.com/anagram-generator/",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any (web browser)",
+    "browserRequirements": "Requires JavaScript",
+    "description": "A free anagram generator that finds single-word anagrams and sub-anagrams from your letters or a short phrase.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thewordpuzzlesolver.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Anagram Generator", "item": "https://thewordpuzzlesolver.com/anagram-generator/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is an anagram?", "acceptedAnswer": { "@type": "Answer", "text": "An anagram is a word or phrase made by rearranging the letters of another, using each letter once. For example, listen and silent are anagrams." } },
+      { "@type": "Question", "name": "How does this anagram generator work?", "acceptedAnswer": { "@type": "Answer", "text": "It cleans your input to letters only, then finds every dictionary word you can build from those letters, respecting how many times each letter appears." } },
+      { "@type": "Question", "name": "Can I enter a full phrase?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Spaces and punctuation are ignored, so you can paste a name or short phrase and the generator uses all of its letters." } },
+      { "@type": "Question", "name": "Does it create multi-word anagrams?", "acceptedAnswer": { "@type": "Answer", "text": "Not yet. It currently generates single-word anagrams and sub-anagrams. Full multi-word phrase anagrams are planned for a future version." } },
+      { "@type": "Question", "name": "Can I use it for word games?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is handy for Scrabble, crosswords, and puzzles, though results come from an internal dictionary that may not match every official word list." } }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#tool">Skip to the anagram generator</a>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="/" aria-label="Word Puzzle Solver home">
+        <span class="brand__tiles" aria-hidden="true">
+          <span class="tile tile--sm">W</span><span class="tile tile--sm">P</span><span class="tile tile--sm">S</span>
+        </span>
+        <span class="brand__name">Word Puzzle&nbsp;Solver</span>
+      </a>
+      <nav class="site-nav" aria-label="Puzzle tools">
+        <ul>
+          <li><a href="/word-unscrambler/">Word Unscrambler</a></li>
+          <li><a href="/word-solver/">Word Solver</a></li>
+          <li><a href="/wordle-helper/">Wordle Helper</a></li>
+          <li><a href="/anagram-generator/" aria-current="page">Anagram Generator</a></li>
+          <li><a href="/5-letter-words/">5 Letter Words</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================ HERO + TOOL ============================ -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Free anagram solver &amp; letter rearranger</p>
+        <h1 class="hero__title">Anagram Generator</h1>
+        <p class="hero__lead">
+          Rearrange your letters to uncover the words hidden inside them. Enter a
+          set of letters, a name, or a short phrase to generate single-word
+          anagrams and sub-anagrams, sorted from longest to shortest.
+        </p>
+
+        <div class="tool card" id="tool">
+          <form id="anagram-form" class="tool__form" novalidate>
+            <div class="field field--main">
+              <label for="phrase">Letters or phrase</label>
+              <input type="text" id="phrase" name="phrase" inputmode="latin"
+                     autocomplete="off" autocapitalize="characters" spellcheck="false"
+                     placeholder="e.g. LISTEN" aria-describedby="phrase-help form-error" />
+              <p class="field__help" id="phrase-help">Spaces, numbers, and symbols are ignored — paste a name or short phrase if you like.</p>
+            </div>
+
+            <div class="tool__row">
+              <div class="field">
+                <label for="minlen">Minimum word length</label>
+                <select id="minlen" name="minlen">
+                  <option value="2">2+ letters</option>
+                  <option value="3">3+ letters</option>
+                  <option value="4">4+ letters</option>
+                  <option value="5">5+ letters</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="length">Exact length <span class="field__opt">(optional)</span></label>
+                <select id="length" name="length">
+                  <option value="any">Any length</option>
+                  <option value="2">2 letters</option>
+                  <option value="3">3 letters</option>
+                  <option value="4">4 letters</option>
+                  <option value="5">5 letters</option>
+                  <option value="6">6 letters</option>
+                  <option value="7">7 letters</option>
+                  <option value="8plus">8+ letters</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="include">Must include <span class="field__opt">(optional)</span></label>
+              <input type="text" id="include" name="include" autocomplete="off"
+                     autocapitalize="characters" spellcheck="false" placeholder="e.g. s"
+                     aria-describedby="include-help" />
+              <p class="field__help" id="include-help">Keep only anagrams containing these letters.</p>
+            </div>
+
+            <div class="field">
+              <label for="sort">Sort results by</label>
+              <select id="sort" name="sort">
+                <option value="length">Length, longest first</option>
+                <option value="alpha">Alphabetical</option>
+                <option value="score">Scrabble score, highest first</option>
+              </select>
+            </div>
+
+            <p class="field__error" id="form-error" role="alert" hidden></p>
+
+            <div class="tool__actions">
+              <button type="submit" class="btn btn--primary">Generate Anagrams</button>
+              <button type="button" class="btn btn--ghost" id="clear-btn">Clear</button>
+            </div>
+          </form>
+
+          <div class="tool__results" aria-labelledby="results-heading">
+            <h2 id="results-heading" class="sr-only">Results</h2>
+            <p class="results__summary" id="results-summary"></p>
+            <p class="sr-only" id="results-status" role="status" aria-live="polite"></p>
+            <div id="results" class="results"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AD: HORIZONTAL ===================== -->
+    <div class="container">
+      <aside class="ad ad--horizontal" aria-label="Advertisement">
+        <span class="ad__label">Advertisement</span>
+        <div class="ad__slot">
+          <ins class="adsbygoogle ad-unit ad-unit--horizontal" style="display:block"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1111111111"
+               data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+      </aside>
+    </div>
+
+    <!-- ===================== CONTENT + SIDEBAR ===================== -->
+    <div class="container layout">
+      <div class="layout__main">
+
+        <section class="card prose" id="how-to-use">
+          <h2>How to Use the Anagram Generator</h2>
+          <ol class="steps">
+            <li><strong>Enter letters or a phrase.</strong> Type or paste your letters; spaces and punctuation are ignored.</li>
+            <li><strong>Set the length.</strong> Choose a minimum length, or pin an exact length to focus the list.</li>
+            <li><strong>Require a letter.</strong> Optionally keep only anagrams that contain a specific letter.</li>
+            <li><strong>Generate.</strong> Select <em>Generate Anagrams</em> to see results grouped from longest to shortest.</li>
+          </ol>
+        </section>
+
+        <section class="card prose" id="what-is">
+          <h2>What Is an Anagram?</h2>
+          <p>
+            An anagram is a word made by rearranging the letters of another word or
+            phrase, using each letter exactly once. <em>Listen</em> and
+            <em>silent</em> are classic anagrams. A sub-anagram uses only some of the
+            letters — for example, <em>parse</em> from the letters in <em>spare</em>.
+          </p>
+        </section>
+
+        <!-- ===================== AD: IN-CONTENT ===================== -->
+        <aside class="ad ad--inline" aria-label="Advertisement">
+          <span class="ad__label">Advertisement</span>
+          <div class="ad__slot">
+            <ins class="adsbygoogle ad-unit ad-unit--inline" style="display:block; text-align:center;"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="2222222222"
+                 data-ad-layout="in-article" data-ad-format="fluid"></ins>
+          </div>
+        </aside>
+
+        <section class="card prose" id="names-phrases">
+          <h2>Anagram Generator for Names and Phrases</h2>
+          <p>
+            Because spaces and punctuation are ignored, you can drop in a name or a
+            short phrase and the generator pools all of the letters together. That
+            makes it easy to spot the words hiding inside a friend’s name, a team
+            name, or a puzzle clue. To rearrange an exact set of tiles instead, the
+            <a href="/word-unscrambler/">word unscrambler</a> is a focused tool, and
+            the <a href="/word-solver/">word solver</a> adds prefix and suffix filters.
+          </p>
+        </section>
+
+        <section class="card prose" id="single-vs-multi">
+          <h2>Single-Word vs Multi-Word Anagrams</h2>
+          <p>
+            This generator currently finds <strong>single-word</strong> anagrams and
+            sub-anagrams from your letters. Full <strong>multi-word</strong> phrase
+            anagrams — rearranging a phrase into a brand-new phrase — are planned for
+            a future version. For now, use the length and must-include filters to
+            surface the most interesting single words.
+          </p>
+        </section>
+
+        <section class="card prose" id="tips">
+          <h2>Tips for Finding Better Anagrams</h2>
+          <h3>Start long</h3>
+          <p>Longer anagrams are usually the most satisfying — results are sorted longest-first so they appear at the top.</p>
+          <h3>Lower the minimum</h3>
+          <p>If results feel thin, drop the minimum length to surface more sub-anagrams.</p>
+          <h3>Anchor a letter</h3>
+          <p>Use “must include” to focus on anagrams that keep a meaningful letter, like the first initial of a name.</p>
+        </section>
+
+        <section class="card prose" id="faq">
+          <h2>Frequently Asked Questions</h2>
+          <h3>What is an anagram?</h3>
+          <p>A word or phrase formed by rearranging the letters of another, using each letter once.</p>
+          <h3>How does this anagram generator work?</h3>
+          <p>It cleans your input to letters, then finds every dictionary word you can build from them, respecting repeats.</p>
+          <h3>Can I enter a full phrase?</h3>
+          <p>Yes. Spaces and punctuation are ignored, so names and short phrases work.</p>
+          <h3>Does it create multi-word anagrams?</h3>
+          <p>Not yet — it generates single-word anagrams and sub-anagrams. Multi-word support is planned.</p>
+          <h3>Can I use it for word games?</h3>
+          <p>Yes, though results come from a broad English word list and may include obscure words. They may not match every official game dictionary, and Word Puzzle Solver is not affiliated with any game publisher — confirm a word with your game’s official dictionary if needed. See the <a href="/dictionary/">dictionary and word list</a> page.</p>
+        </section>
+
+      </div>
+
+      <aside class="layout__side" aria-label="Advertisement">
+        <div class="ad ad--sidebar">
+          <span class="ad__label">Advertisement</span>
+          <div class="ad__slot ad__slot--tall">
+            <ins class="adsbygoogle ad-unit ad-unit--sidebar" style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="3333333333"
+                 data-ad-format="auto" data-full-width-responsive="true"></ins>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div>
+        <span class="brand__name">Word Puzzle Solver</span>
+        <p class="site-footer__tag">Fast, friendly tools for word games.</p>
+      </div>
+      <nav aria-label="Puzzle tools">
+        <h2 class="site-footer__heading">Tools</h2>
+        <ul>
+          <li><a href="/word-unscrambler/">Word Unscrambler</a></li>
+          <li><a href="/word-solver/">Word Solver</a></li>
+          <li><a href="/wordle-helper/">Wordle Helper</a></li>
+          <li><a href="/anagram-generator/" aria-current="page">Anagram Generator</a></li>
+          <li><a href="/5-letter-words/">5 Letter Words</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Coming soon">
+        <h2 class="site-footer__heading">Coming soon</h2>
+        <ul class="site-footer__soon">
+          <li>Crossword Solver</li>
+          <li>Words That Start With…</li>
+          <li>Words Ending In…</li>
+        </ul>
+      </nav>
+      <nav aria-label="Site information">
+        <h2 class="site-footer__heading">Site</h2>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/dictionary/">Dictionary</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms/">Terms of Use</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container site-footer__legal">
+      <p>&copy; 2026 Word Puzzle Solver. Not affiliated with Scrabble, Words With Friends, or Wordle.</p>
+    </div>
+  </footer>
+</body>
+</html>

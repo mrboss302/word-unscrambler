@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ===================== SEO: PRIMARY META ===================== -->
+  <title>Word Solver – Find Words From Letters | Word Puzzle Solver</title>
+  <meta name="description" content="Use this free word solver to find words from letters, filter by length, require specific letters, and solve word games faster." />
+  <link rel="canonical" href="https://thewordpuzzlesolver.com/word-solver/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#127a6b" />
+
+  <!-- ===================== SEO: OPEN GRAPH ===================== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Word Puzzle Solver" />
+  <meta property="og:title" content="Word Solver – Find Words From Letters" />
+  <meta property="og:description" content="Find words from letters with filters for length, required letters, prefixes, suffixes, and substrings." />
+  <meta property="og:url" content="https://thewordpuzzlesolver.com/word-solver/" />
+  <meta property="og:image" content="https://thewordpuzzlesolver.com/og-word-unscrambler.png" />
+
+  <!-- ===================== SEO: TWITTER CARD ===================== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Word Solver – Find Words From Letters" />
+  <meta name="twitter:description" content="Find words from letters with filters for length, required letters, prefixes, suffixes, and substrings." />
+  <meta name="twitter:image" content="https://thewordpuzzlesolver.com/og-word-unscrambler.png" />
+
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/assets/js/dictionary.js" defer></script>
+  <script src="/assets/js/word-tools.js" defer></script>
+  <script src="/word-solver/script.js" defer></script>
+  <script src="/assets/js/ads.js" defer></script>
+
+  <!-- ===================== GOOGLE ADSENSE LOADER ===================== -->
+  <!-- DEV NOTE: replace ca-pub-XXXXXXXXXXXXXXXX with your real publisher ID. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+       crossorigin="anonymous"></script>
+
+  <!-- ===================== SEO: JSON-LD STRUCTURED DATA ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Word Solver",
+    "url": "https://thewordpuzzlesolver.com/word-solver/",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any (web browser)",
+    "browserRequirements": "Requires JavaScript",
+    "description": "A free word solver that finds words from your letters with filters for length, required letters, prefixes, suffixes, and substrings.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thewordpuzzlesolver.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Word Solver", "item": "https://thewordpuzzlesolver.com/word-solver/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is a word solver?", "acceptedAnswer": { "@type": "Answer", "text": "A word solver takes the letters you have and finds valid words you can make, with filters to narrow the list by length, required letters, and letter patterns." } },
+      { "@type": "Question", "name": "How do I find words from letters?", "acceptedAnswer": { "@type": "Answer", "text": "Type your available letters into the tool and select Find Words. You can also require certain letters or filter by starting, ending, or contained letters." } },
+      { "@type": "Question", "name": "Can I search by starting or ending letters?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the starts with, ends with, and contains fields to filter results by prefix, suffix, or substring." } },
+      { "@type": "Question", "name": "Can I use this for Scrabble?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Enter your rack to see playable words with their Scrabble scores, sorted from longest to shortest." } },
+      { "@type": "Question", "name": "Are all results valid in every word game?", "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily. Results come from an internal dictionary and may not match every official game word list, so always confirm against the rules of your game." } }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#tool">Skip to the word solver</a>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="/" aria-label="Word Puzzle Solver home">
+        <span class="brand__tiles" aria-hidden="true">
+          <span class="tile tile--sm">W</span><span class="tile tile--sm">P</span><span class="tile tile--sm">S</span>
+        </span>
+        <span class="brand__name">Word Puzzle&nbsp;Solver</span>
+      </a>
+      <nav class="site-nav" aria-label="Puzzle tools">
+        <ul>
+          <li><a href="/word-unscrambler/">Word Unscrambler</a></li>
+          <li><a href="/word-solver/" aria-current="page">Word Solver</a></li>
+          <li><a href="/wordle-helper/">Wordle Helper</a></li>
+          <li><a href="/anagram-generator/">Anagram Generator</a></li>
+          <li><a href="/5-letter-words/">5 Letter Words</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================ HERO + TOOL ============================ -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Free word finder &amp; word game helper</p>
+        <h1 class="hero__title">Word Solver</h1>
+        <p class="hero__lead">
+          Find every word you can make from your letters, then narrow the list
+          with filters for length, required letters, and letter position. Great
+          for Scrabble, Words With Friends, crosswords, and any word game.
+        </p>
+
+        <div class="tool card" id="tool">
+          <form id="solver-form" class="tool__form" novalidate>
+            <div class="field field--main">
+              <label for="letters">Available letters</label>
+              <input type="text" id="letters" name="letters" inputmode="latin"
+                     autocomplete="off" autocapitalize="characters" spellcheck="false"
+                     placeholder="e.g. TRACE" aria-describedby="letters-help form-error" />
+              <p class="field__help" id="letters-help">Words must be buildable from these letters. Leave blank to search by pattern only.</p>
+            </div>
+
+            <div class="tool__row">
+              <div class="field">
+                <label for="include">Must include <span class="field__opt">(optional)</span></label>
+                <input type="text" id="include" name="include" autocomplete="off"
+                       autocapitalize="characters" spellcheck="false" placeholder="e.g. r"
+                       aria-describedby="include-help" />
+                <p class="field__help" id="include-help">Keep only words containing these letters.</p>
+              </div>
+              <div class="field">
+                <label for="length">Word length <span class="field__opt">(optional)</span></label>
+                <select id="length" name="length">
+                  <option value="any">Any length</option>
+                  <option value="2">2 letters</option>
+                  <option value="3">3 letters</option>
+                  <option value="4">4 letters</option>
+                  <option value="5">5 letters</option>
+                  <option value="6">6 letters</option>
+                  <option value="7">7 letters</option>
+                  <option value="8plus">8+ letters</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="tool__row">
+              <div class="field">
+                <label for="starts">Starts with <span class="field__opt">(optional)</span></label>
+                <input type="text" id="starts" name="starts" autocomplete="off"
+                       autocapitalize="characters" spellcheck="false" placeholder="e.g. st" />
+              </div>
+              <div class="field">
+                <label for="ends">Ends with <span class="field__opt">(optional)</span></label>
+                <input type="text" id="ends" name="ends" autocomplete="off"
+                       autocapitalize="characters" spellcheck="false" placeholder="e.g. e" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="contains">Contains <span class="field__opt">(optional)</span></label>
+              <input type="text" id="contains" name="contains" autocomplete="off"
+                     autocapitalize="characters" spellcheck="false" placeholder="e.g. ac" />
+            </div>
+
+            <div class="field">
+              <label for="sort">Sort results by</label>
+              <select id="sort" name="sort">
+                <option value="length">Length, longest first</option>
+                <option value="alpha">Alphabetical</option>
+                <option value="score">Scrabble score, highest first</option>
+              </select>
+            </div>
+
+            <p class="field__error" id="form-error" role="alert" hidden></p>
+
+            <div class="tool__actions">
+              <button type="submit" class="btn btn--primary">Find Words</button>
+              <button type="button" class="btn btn--ghost" id="clear-btn">Clear</button>
+            </div>
+          </form>
+
+          <div class="tool__results" aria-labelledby="results-heading">
+            <h2 id="results-heading" class="sr-only">Results</h2>
+            <p class="results__summary" id="results-summary"></p>
+            <p class="sr-only" id="results-status" role="status" aria-live="polite"></p>
+            <div id="results" class="results"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AD: HORIZONTAL (below tool) ===================== -->
+    <div class="container">
+      <aside class="ad ad--horizontal" aria-label="Advertisement">
+        <span class="ad__label">Advertisement</span>
+        <div class="ad__slot">
+          <ins class="adsbygoogle ad-unit ad-unit--horizontal" style="display:block"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1111111111"
+               data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+      </aside>
+    </div>
+
+    <!-- ===================== CONTENT + SIDEBAR ===================== -->
+    <div class="container layout">
+      <div class="layout__main">
+
+        <section class="card prose" id="how-to-use">
+          <h2>How to Use the Word Solver</h2>
+          <ol class="steps">
+            <li><strong>Enter your letters.</strong> Type the letters you have into “Available letters”.</li>
+            <li><strong>Add filters.</strong> Optionally require a letter, set a length, or filter by what the word starts with, ends with, or contains.</li>
+            <li><strong>Find words.</strong> Select <em>Find Words</em> to see matches grouped from longest to shortest.</li>
+            <li><strong>Scan and play.</strong> Each word shows its Scrabble score so you can pick the best play.</li>
+          </ol>
+        </section>
+
+        <section class="card prose" id="what-is">
+          <h2>What Is a Word Solver?</h2>
+          <p>
+            A word solver turns a set of letters into the valid words you can build
+            from them. It is broader than a basic unscrambler: alongside finding
+            words from your letters, it lets you filter by prefix, suffix, contained
+            letters, required letters, and length — so you can target exactly the
+            kind of word you need.
+          </p>
+          <p>
+            If you only want to rearrange an exact set of tiles, the
+            <a href="/word-unscrambler/">word unscrambler</a> is a focused option.
+            For five-letter puzzles, try the <a href="/5-letter-words/">5 letter words</a>
+            finder or the <a href="/wordle-helper/">Wordle helper</a>.
+          </p>
+        </section>
+
+        <!-- ===================== AD: IN-CONTENT ===================== -->
+        <aside class="ad ad--inline" aria-label="Advertisement">
+          <span class="ad__label">Advertisement</span>
+          <div class="ad__slot">
+            <ins class="adsbygoogle ad-unit ad-unit--inline" style="display:block; text-align:center;"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="2222222222"
+                 data-ad-layout="in-article" data-ad-format="fluid"></ins>
+          </div>
+        </aside>
+
+        <section class="card prose" id="find-words">
+          <h2>Find Words From Letters</h2>
+          <p>
+            Enter the letters you have and the solver checks each dictionary word to
+            confirm you hold enough of every letter to spell it, respecting repeated
+            tiles. If you leave the letters blank, you can still search the dictionary
+            using only the starts-with, ends-with, and contains filters — handy for
+            crossword clues where you know part of a word but not your full rack.
+          </p>
+        </section>
+
+        <section class="card prose" id="scrabble-wwf">
+          <h2>Word Solver for Scrabble and Words With Friends</h2>
+          <p>
+            Enter your seven tiles to see every legal word, ranked longest to
+            shortest with its point value. Pair the length filter with the board:
+            shorter words slot into tight spaces, while the longest results help you
+            reach a bonus square. Scores use standard Scrabble values, so treat them
+            as a strong guide rather than an exact Words With Friends total.
+          </p>
+        </section>
+
+        <section class="card prose" id="tips">
+          <h2>Word Solver Tips</h2>
+          <h3>Lead with length</h3>
+          <p>Results are sorted longest-first because longer words usually score more and clear more tiles.</p>
+          <h3>Use prefixes and suffixes</h3>
+          <p>Common endings like <em>-ing</em>, <em>-ed</em>, and <em>-er</em> in the “ends with” field quickly surface playable forms.</p>
+          <h3>Anchor with required letters</h3>
+          <p>In a crossword, put a known letter in “must include” or “contains” to focus the list.</p>
+        </section>
+
+        <section class="card prose" id="faq">
+          <h2>Frequently Asked Questions</h2>
+          <h3>What is a word solver?</h3>
+          <p>It is a tool that finds valid words from your letters, with filters to narrow results by length, required letters, and patterns.</p>
+          <h3>How do I find words from letters?</h3>
+          <p>Type your available letters and select Find Words. Add filters to focus the list.</p>
+          <h3>Can I search by starting or ending letters?</h3>
+          <p>Yes — use the starts with, ends with, and contains fields for prefix, suffix, and substring searches.</p>
+          <h3>Can I use this for Scrabble?</h3>
+          <p>Yes. Enter your rack to see playable words with Scrabble scores.</p>
+          <h3>Are all results valid in every word game?</h3>
+          <p>Not necessarily. Results come from a broad English word list and may include obscure words. They may not match every official game dictionary, and Word Puzzle Solver is not affiliated with any game publisher — confirm a word with your game’s official dictionary if needed. See the <a href="/dictionary/">dictionary and word list</a> page.</p>
+        </section>
+
+      </div>
+
+      <aside class="layout__side" aria-label="Advertisement">
+        <div class="ad ad--sidebar">
+          <span class="ad__label">Advertisement</span>
+          <div class="ad__slot ad__slot--tall">
+            <ins class="adsbygoogle ad-unit ad-unit--sidebar" style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="3333333333"
+                 data-ad-format="auto" data-full-width-responsive="true"></ins>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div>
+        <span class="brand__name">Word Puzzle Solver</span>
+        <p class="site-footer__tag">Fast, friendly tools for word games.</p>
+      </div>
+      <nav aria-label="Puzzle tools">
+        <h2 class="site-footer__heading">Tools</h2>
+        <ul>
+          <li><a href="/word-unscrambler/">Word Unscrambler</a></li>
+          <li><a href="/word-solver/" aria-current="page">Word Solver</a></li>
+          <li><a href="/wordle-helper/">Wordle Helper</a></li>
+          <li><a href="/anagram-generator/">Anagram Generator</a></li>
+          <li><a href="/5-letter-words/">5 Letter Words</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Coming soon">
+        <h2 class="site-footer__heading">Coming soon</h2>
+        <ul class="site-footer__soon">
+          <li>Crossword Solver</li>
+          <li>Words That Start With…</li>
+          <li>Words Ending In…</li>
+        </ul>
+      </nav>
+      <nav aria-label="Site information">
+        <h2 class="site-footer__heading">Site</h2>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/dictionary/">Dictionary</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms/">Terms of Use</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container site-footer__legal">
+      <p>&copy; 2026 Word Puzzle Solver. Not affiliated with Scrabble, Words With Friends, or Wordle.</p>
+    </div>
+  </footer>
+</body>
+</html>
