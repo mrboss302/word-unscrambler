@@ -32,9 +32,9 @@
   <script src="/assets/js/ads.js" defer></script>
 
   <!-- ===================== GOOGLE ADSENSE LOADER ===================== -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840656918521680"
-     crossorigin="anonymous">
-  </script>
+  <!-- DEV NOTE: replace ca-pub-XXXXXXXXXXXXXXXX with your real publisher ID. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+       crossorigin="anonymous"></script>
 
   <!-- ===================== SEO: JSON-LD STRUCTURED DATA ===================== -->
   <script type="application/ld+json">
@@ -260,6 +260,66 @@
           <p>Use “must include” to focus on anagrams that keep a meaningful letter, like the first initial of a name.</p>
         </section>
 
+        <section class="card prose" id="full-vs-sub">
+          <h2>Full anagrams versus sub-anagrams</h2>
+          <p>
+            There are two kinds of answer this tool produces, and knowing the
+            difference helps you read the results. A <strong>full anagram</strong> uses
+            every letter of your input exactly once — <em>listen</em> and
+            <em>silent</em> are full anagrams because both use the same seven letters.
+            A <strong>sub-anagram</strong> uses only some of the letters, like
+            <em>tin</em> or <em>nest</em> from those same seven. Full anagrams are the
+            prize; sub-anagrams are the supporting cast that often matter more in
+            actual games, where you rarely need to spend every tile.
+          </p>
+          <p>
+            Because the generator returns both and groups them by length, the longest
+            group is where any full anagrams will appear, and the shorter groups give
+            you the playable sub-anagrams.
+          </p>
+        </section>
+
+        <section class="card prose" id="by-hand">
+          <h2>How to solve an anagram by hand</h2>
+          <p>
+            When you want to crack one yourself, a simple method beats staring. First,
+            separate the vowels from the consonants — seeing how many vowels you have
+            and where they can sit narrows the field quickly. Next, look for common
+            building blocks: beginnings like <em>st-</em>, <em>tr-</em>, <em>ch-</em>,
+            and <em>un-</em>, and endings like <em>-ing</em>, <em>-ed</em>,
+            <em>-er</em>, <em>-ly</em>, and <em>-tion</em>. Park a likely ending, then
+            arrange the remaining letters in front of it. If you hit a wall, physically
+            rewrite the letters in a new random order; breaking the original sequence
+            stops your brain from re-reading the same non-word. The generator is there
+            for when you simply want the answer, or to check that you found them all.
+          </p>
+        </section>
+
+        <section class="card prose" id="famous">
+          <h2>Anagrams worth knowing</h2>
+          <p>
+            Part of the fun of anagrams is how often the rearrangement seems to comment
+            on the original. A few classics: <em>dormitory</em> rearranges to
+            <em>dirty room</em>; <em>the eyes</em> becomes <em>they see</em>; and
+            <em>astronomer</em> hides <em>moon starer</em>. None of these are
+            coincidences you would spot by reading left to right — they only appear once
+            you pool the letters and look again, which is exactly what the generator
+            does for you.
+          </p>
+        </section>
+
+        <section class="card prose" id="uses">
+          <h2>Fun ways to use the anagram generator</h2>
+          <p>
+            Beyond solving puzzles, anagrams are a quick source of creative names. Drop
+            in your own name to find a hidden word or a pen-name, mix a team's player
+            names into a club handle, or feed in a project title to look for a memorable
+            username. Writers use anagrams to build pseudonyms and puzzle setters use
+            them to design fair clues. Since the tool ignores spaces and punctuation,
+            you can paste a whole phrase and let it pool every letter together.
+          </p>
+        </section>
+
         <section class="card prose" id="faq">
           <h2>Frequently Asked Questions</h2>
           <h3>What is an anagram?</h3>
@@ -321,6 +381,7 @@
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
           <li><a href="/dictionary/">Dictionary</a></li>
+          <li><a href="/guides/">Guides</a></li>
           <li><a href="/privacy-policy/">Privacy Policy</a></li>
           <li><a href="/terms/">Terms of Use</a></li>
         </ul>

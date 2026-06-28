@@ -32,9 +32,10 @@
   <script src="/word-unscrambler/script.js" defer></script>
 
   <!-- ===================== GOOGLE ADSENSE LOADER ===================== -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840656918521680"
-     crossorigin="anonymous">
-  </script>
+  <!-- DEV NOTE: Replace ca-pub-XXXXXXXXXXXXXXXX with your real AdSense
+       publisher ID. Include this loader script exactly ONCE per page. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+       crossorigin="anonymous"></script>
 
   <!-- ===================== SEO: JSON-LD STRUCTURED DATA ===================== -->
   <script type="application/ld+json">
@@ -365,6 +366,62 @@
           </p>
         </section>
 
+        <section class="card prose" id="how-it-works">
+          <h2>How a word unscrambler actually works</h2>
+          <p>
+            Behind the simple box, the unscrambler does something you could do by
+            hand — just much faster. First it cleans your input down to letters,
+            ignoring spaces, numbers, and symbols. Then it counts how many of each
+            letter you have, turning a rack like <strong>LETTERS</strong> into a tally:
+            one L, one R, one S, two T's, and two E's. That tally is the key to the
+            whole process.
+          </p>
+          <p>
+            To decide whether a dictionary word is playable, the tool checks that
+            word's own letter tally against yours. A word qualifies only if you hold
+            at least as many of every letter it needs. This is why repeated letters
+            matter so much: the rack above can spell <em>letter</em> because it has the
+            two T's and two E's that word requires, but a rack with a single E could
+            not. Most online frustration with unscramblers comes from this rule —
+            you cannot reuse a tile you do not physically have.
+          </p>
+          <h3>A worked example: the rack SAILORS</h3>
+          <p>
+            Type <strong>SAILORS</strong> and the tool counts two S's, one A, one I,
+            one L, one O, and one R. It then sweeps the dictionary and keeps every
+            word that fits inside that tally — a word like <em>airfoils</em> fails
+            because there is no F in your rack, but <em>sailor</em>, <em>solar</em>,
+            <em>lasso</em>, <em>sisal</em>, <em>silo</em>, <em>also</em>, and many
+            shorter words pass. Results arrive grouped from longest to shortest,
+            because in most games the longest word clears the most tiles and scores the
+            most points. Each result carries its Scrabble value, so a quick glance tells
+            you whether <em>also</em> or <em>oar</em> is the better dump.
+          </p>
+          <h3>Reading your results well</h3>
+          <p>
+            Scan the longest group first — a seven-letter result on a seven-tile rack
+            is a Scrabble bingo and a 50-point bonus. If nothing long fits the board,
+            drop to the shorter groups for a play that slots into a tight space or sets
+            up your next turn. Use the <em>must include</em> field when a board letter
+            has to appear in your word, and the length filter when you are solving a
+            puzzle that demands an exact word length.
+          </p>
+        </section>
+
+        <section class="card prose" id="beyond-scrabble">
+          <h2>Where unscrambling helps beyond Scrabble</h2>
+          <p>
+            Rearranging letters is useful well outside the Scrabble board. It cracks
+            the daily newspaper Jumble, where the whole puzzle is an anagram. It helps
+            anyone learning English spelling see which words a set of letters can form.
+            Parents and teachers use it to build quick spelling drills from a child's
+            name or this week's vocabulary. And puzzle setters use it in reverse — to
+            check that a clever-looking jumble has a clean, single answer. Whatever the
+            source of your letters, the method is the same: count them, then keep every
+            word the count can build.
+          </p>
+        </section>
+
         <section class="card prose" id="faq">
           <h2>Frequently asked questions</h2>
 
@@ -468,6 +525,7 @@
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
           <li><a href="/dictionary/">Dictionary</a></li>
+          <li><a href="/guides/">Guides</a></li>
           <li><a href="/privacy-policy/">Privacy Policy</a></li>
           <li><a href="/terms/">Terms of Use</a></li>
         </ul>

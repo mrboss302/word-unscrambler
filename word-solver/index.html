@@ -32,9 +32,9 @@
   <script src="/assets/js/ads.js" defer></script>
 
   <!-- ===================== GOOGLE ADSENSE LOADER ===================== -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840656918521680"
-     crossorigin="anonymous">
-  </script>
+  <!-- DEV NOTE: replace ca-pub-XXXXXXXXXXXXXXXX with your real publisher ID. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+       crossorigin="anonymous"></script>
 
   <!-- ===================== SEO: JSON-LD STRUCTURED DATA ===================== -->
   <script type="application/ld+json">
@@ -275,6 +275,67 @@
           <p>In a crossword, put a known letter in “must include” or “contains” to focus the list.</p>
         </section>
 
+        <section class="card prose" id="recipes">
+          <h2>Filter recipes for common situations</h2>
+          <p>
+            The Word Solver earns its keep when you combine filters. Any single field
+            is handy on its own, but stacking two or three turns a vague search into a
+            precise one. Here are recipes that come up again and again.
+          </p>
+          <h3>Find a play that fits a board gap</h3>
+          <p>
+            Say there is a space on the board that needs a five-letter word starting
+            with <strong>T</strong>. Put your rack in <em>available letters</em>, type
+            <strong>t</strong> in <em>starts with</em>, and set the length to five. The
+            tool now shows only words you can actually build that drop into that slot —
+            no scrolling past words that will not fit.
+          </p>
+          <h3>Hunt for a hook</h3>
+          <p>
+            Hooks add one letter to a word already on the board. If <em>are</em> is on
+            the board and you want to extend it, search with <em>ends with</em> set to
+            <strong>are</strong> to surface <em>bare</em>, <em>hare</em>, <em>mare</em>,
+            and <em>ware</em>, or <em>starts with</em> <strong>are</strong> for
+            <em>area</em> and <em>arena</em>. Add your rack letters to keep only the
+            hooks you can play.
+          </p>
+          <h3>Empty an awkward rack</h3>
+          <p>
+            Stuck with three high-value consonants and no vowels? Leave the length on
+            <em>any</em>, enter your letters, and sort by <em>Scrabble score, highest
+            first</em>. Short, dense words like <em>zek</em> or <em>biz</em> often
+            score better than a longer, flabby play and rescue a clogged rack.
+          </p>
+          <h3>Solve a crossword blank</h3>
+          <p>
+            When you know a couple of letters in a crossword answer, the
+            <em>contains</em> field narrows the field fast. Combine it with a length to
+            match the grid, and add <em>starts with</em> or <em>ends with</em> if a
+            crossing letter is already filled in.
+          </p>
+        </section>
+
+        <section class="card prose" id="vs-unscrambler">
+          <h2>Word Solver vs. Word Unscrambler</h2>
+          <p>
+            The two tools share an engine but answer different questions. The
+            <a href="/word-unscrambler/">Word Unscrambler</a> is the fastest path when
+            your question is simply "what can I make from these tiles?" The Word Solver
+            is the better choice the moment you need to constrain the answer — a
+            prefix, a suffix, a contained string, or a search with no rack at all.
+          </p>
+          <p>
+            That last case is worth highlighting: you can leave <em>available
+            letters</em> empty and search purely by pattern. That makes the Word Solver
+            a capable crossword and pattern tool, not just a tile solver. If you want a
+            search restricted to five-letter words, the
+            <a href="/5-letter-words/">5 Letter Words</a> finder is tuned for that, and
+            for clue-based five-letter puzzles the
+            <a href="/wordle-helper/">Wordle Helper</a> adds green, yellow, and gray
+            inputs.
+          </p>
+        </section>
+
         <section class="card prose" id="faq">
           <h2>Frequently Asked Questions</h2>
           <h3>What is a word solver?</h3>
@@ -336,6 +397,7 @@
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
           <li><a href="/dictionary/">Dictionary</a></li>
+          <li><a href="/guides/">Guides</a></li>
           <li><a href="/privacy-policy/">Privacy Policy</a></li>
           <li><a href="/terms/">Terms of Use</a></li>
         </ul>

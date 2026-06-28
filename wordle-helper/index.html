@@ -32,9 +32,9 @@
   <script src="/assets/js/ads.js" defer></script>
 
   <!-- ===================== GOOGLE ADSENSE LOADER ===================== -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3840656918521680"
-     crossorigin="anonymous">
-  </script>
+  <!-- DEV NOTE: replace ca-pub-XXXXXXXXXXXXXXXX with your real publisher ID. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+       crossorigin="anonymous"></script>
 
   <!-- ===================== SEO: JSON-LD STRUCTURED DATA ===================== -->
   <script type="application/ld+json">
@@ -183,11 +183,8 @@
         <span class="ad__label">Advertisement</span>
         <div class="ad__slot">
           <ins class="adsbygoogle ad-unit ad-unit--horizontal" style="display:block"
-               data-ad-client="ca-pub-3840656918521680" data-ad-slot="3891195421"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1111111111"
                data-ad-format="auto" data-full-width-responsive="true"></ins>
-                      <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </div>
       </aside>
     </div>
@@ -218,11 +215,8 @@
           <span class="ad__label">Advertisement</span>
           <div class="ad__slot">
             <ins class="adsbygoogle ad-unit ad-unit--inline" style="display:block; text-align:center;"
-                 data-ad-client="ca-pub-3840656918521680" data-ad-slot="1720593584"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="2222222222"
                  data-ad-layout="in-article" data-ad-format="fluid"></ins>
-            <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
           </div>
         </aside>
 
@@ -260,6 +254,60 @@
           </p>
         </section>
 
+        <section class="card prose" id="openers">
+          <h2>Choosing a strong opening word</h2>
+          <p>
+            Your first guess is worth more as a probe than as an attempt to win. The
+            goal is to test as many likely letters as possible, so a good opener uses
+            five different letters, leans on the most common ones, and includes two or
+            three vowels. In ordinary English, <strong>E, A, R, O, T, L, I, S, N</strong>
+            and <strong>C</strong> are among the letters you will meet most often in
+            five-letter words, so openers built from that pool tend to light up the
+            board.
+          </p>
+          <p>
+            Many players keep a fixed pair of opening words that, together, test ten
+            common letters before they start deducing. Whatever pair you choose, avoid
+            repeating a letter in your opener — a duplicate spends one of your five
+            slots without testing a new letter.
+          </p>
+        </section>
+
+        <section class="card prose" id="deduction">
+          <h2>A worked deduction</h2>
+          <p>
+            Suppose you open and the puzzle marks the <strong>A</strong> green in the
+            second position, the <strong>R</strong> yellow, and <strong>S, T,</strong>
+            and <strong>O</strong> gray. Here is how that maps onto the helper:
+          </p>
+          <ul>
+            <li>Enter the pattern <strong>_A___</strong> so A is locked in slot two.</li>
+            <li>Put <strong>r</strong> in the include field, because R is in the word somewhere.</li>
+            <li>Put <strong>sto</strong> in the exclude field, because those letters are out.</li>
+            <li>If your R was in, say, slot four when it came up yellow, add <strong>r</strong> to the position-four exclusion so the helper does not put it back there.</li>
+          </ul>
+          <p>
+            Run the search and you are left with a short list of words that satisfy
+            every clue at once. From there, pick the candidate that tests the most new
+            letters if several remain, rather than gambling on the first one you see.
+          </p>
+        </section>
+
+        <section class="card prose" id="duplicates">
+          <h2>The tricky part: duplicate letters</h2>
+          <p>
+            The clue that trips up most solvers is a repeated letter. If the answer
+            contains one <strong>E</strong> but you guessed a word with two, Wordle may
+            mark one E green or yellow and the other gray. Taken literally, that looks
+            like "E is both in and not in the word." The helper resolves this the way
+            the game intends: a letter that is confirmed by a green pattern slot or by
+            the include field is kept, even if you also listed it as a gray. So you can
+            safely enter every gray tile you saw without accidentally throwing out a
+            letter you know belongs. When in doubt, trust your greens and yellows over
+            a conflicting gray.
+          </p>
+        </section>
+
         <section class="card prose" id="faq">
           <h2>Frequently Asked Questions</h2>
           <h3>What is a Wordle helper?</h3>
@@ -281,11 +329,8 @@
           <span class="ad__label">Advertisement</span>
           <div class="ad__slot ad__slot--tall">
             <ins class="adsbygoogle ad-unit ad-unit--sidebar" style="display:block"
-                 data-ad-client="ca-pub-3840656918521680" data-ad-slot="5914723530"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="3333333333"
                  data-ad-format="auto" data-full-width-responsive="true"></ins>
-                        <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
           </div>
         </div>
       </aside>
@@ -324,6 +369,7 @@
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
           <li><a href="/dictionary/">Dictionary</a></li>
+          <li><a href="/guides/">Guides</a></li>
           <li><a href="/privacy-policy/">Privacy Policy</a></li>
           <li><a href="/terms/">Terms of Use</a></li>
         </ul>
