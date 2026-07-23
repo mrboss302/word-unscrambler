@@ -562,3 +562,14 @@ a.tool-card:hover { text-decoration: none; border-color: var(--primary); box-sha
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* ============================ Ads: review mode ============================
+   The site-wide AdSense loader (in each page <head>) is present for account
+   verification and Auto Ads, which Google places automatically AFTER the site
+   is approved. Until then the old manual ad containers are hidden so no empty
+   "Advertisement" boxes appear, and the main content spans the full width.
+   To return to manual ad units later: create real ad units in AdSense, delete
+   these rules, and add <ins> units with your real data-ad-slot IDs. */
+.ad,
+.layout__side { display: none !important; }
+@media (min-width: 1000px) { .layout { display: block; } }
