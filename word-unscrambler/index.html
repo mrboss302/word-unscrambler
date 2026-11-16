@@ -110,7 +110,7 @@
         "name": "Does the tool support blank tiles or wildcards?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Not yet. Blank tile and wildcard support is planned for a future update. For now, enter the specific letters you have."
+          "text": "Yes. Select one or two blank tiles in the form. Each can replace any missing letter, and the displayed tile score treats blanks as zero-point tiles."
         }
       }
     ]
@@ -187,7 +187,7 @@
                 placeholder="e.g. LISTEN"
                 aria-describedby="letters-help form-error"
               />
-              <p class="field__help" id="letters-help">Letters A–Z only. Spaces, numbers, and symbols are ignored.</p>
+              <p class="field__help" id="letters-help">Letters A–Z only. Spaces, numbers, and symbols are ignored. Set blank tiles separately.</p>
             </div>
 
             <div class="tool__row">
@@ -219,6 +219,16 @@
                   <option value="8plus">8+ letters</option>
                 </select>
               </div>
+            </div>
+
+            <div class="field">
+              <label for="blanks">Blank tiles <span class="field__opt">(optional)</span></label>
+              <select id="blanks" name="blanks" aria-describedby="blanks-help">
+                <option value="0">No blanks</option>
+                <option value="1">1 blank tile</option>
+                <option value="2">2 blank tiles</option>
+              </select>
+              <p class="field__help" id="blanks-help">Blank tiles can stand for any letter, but score 0 points. Choose how many you have.</p>
             </div>
 
             <div class="field">
@@ -261,7 +271,7 @@
         <section class="card prose" id="how-to-use">
           <h2>How to use the word unscrambler</h2>
           <ol class="steps">
-            <li><strong>Enter your letters.</strong> Type the scrambled or random letters you have into the “Your letters” box.</li>
+            <li><strong>Enter your letters.</strong> Type the scrambled or random letters you have into the “Your letters” box, then select your blank tiles if any.</li>
             <li><strong>Add any constraints.</strong> Optionally require a specific letter or limit results to a word length.</li>
             <li><strong>Unscramble.</strong> Select <em>Unscramble words</em> to see every match, grouped from longest to shortest.</li>
             <li><strong>Scan and play.</strong> Each word shows its Scrabble score, so you can spot the highest-value play fast.</li>
@@ -422,8 +432,8 @@
 
           <h3>Does the tool support blank tiles or wildcards?</h3>
           <p>
-            Not yet — wildcard and blank-tile support is planned for a future update.
-            For now, enter the exact letters you have.
+            Yes. Select up to two blank tiles above, alongside the letters on your rack.
+            A blank can represent any missing letter, but scores zero points.
           </p>
 
           <h3>Are all results valid in every word game?</h3>
