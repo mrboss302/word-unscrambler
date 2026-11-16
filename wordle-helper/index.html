@@ -17,19 +17,16 @@
   <meta property="og:title" content="Wordle Helper – Find Better 5-Letter Word Guesses" />
   <meta property="og:description" content="Filter 5-letter words by green, yellow, and gray letter clues to narrow your next guess." />
   <meta property="og:url" content="https://thewordpuzzlesolver.com/wordle-helper/" />
-  <meta property="og:image" content="https://thewordpuzzlesolver.com/og-word-unscrambler.png" />
 
   <!-- ===================== SEO: TWITTER CARD ===================== -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Wordle Helper – Find Better 5-Letter Word Guesses" />
   <meta name="twitter:description" content="Filter 5-letter words by green, yellow, and gray letter clues to narrow your next guess." />
-  <meta name="twitter:image" content="https://thewordpuzzlesolver.com/og-word-unscrambler.png" />
 
   <link rel="stylesheet" href="/styles.css" />
   <script src="/assets/js/dictionary.js" defer></script>
   <script src="/assets/js/word-tools.js" defer></script>
   <script src="/wordle-helper/script.js" defer></script>
-  <script src="/assets/js/ads.js" defer></script>
 
   <!-- ===================== GOOGLE ADSENSE LOADER ===================== -->
   <meta name="google-adsense-account" content="ca-pub-3840656918521680" />
@@ -164,6 +161,40 @@
             </div>
           </form>
 
+
+          <section class="guess-lab" aria-labelledby="guess-lab-heading">
+            <h2 id="guess-lab-heading">Use your previous guesses</h2>
+            <p class="field__help">Type a five-letter guess, then tap each tile until it matches your actual feedback: gray, yellow, or green. Add as many guesses as you need. This also handles repeated letters correctly. <a href="/guides/wordle-repeated-letters/">See a worked example of repeated-letter feedback</a>.</p>
+            <div class="field">
+              <label for="guess-entry">Previous guess</label>
+              <input id="guess-entry" type="text" maxlength="5" autocomplete="off"
+                     autocapitalize="characters" spellcheck="false" placeholder="e.g. EERIE"
+                     aria-describedby="guess-lab-hint guess-error" />
+              <p class="field__help" id="guess-lab-hint">Tiles begin gray. Tap a tile once for yellow and again for green.</p>
+            </div>
+            <div class="guess-tiles" id="guess-tiles" role="group" aria-label="Feedback for each letter of the guess">
+              <button type="button" class="guess-tile guess-tile--gray" data-index="0" aria-label="Letter 1: gray">·</button>
+              <button type="button" class="guess-tile guess-tile--gray" data-index="1" aria-label="Letter 2: gray">·</button>
+              <button type="button" class="guess-tile guess-tile--gray" data-index="2" aria-label="Letter 3: gray">·</button>
+              <button type="button" class="guess-tile guess-tile--gray" data-index="3" aria-label="Letter 4: gray">·</button>
+              <button type="button" class="guess-tile guess-tile--gray" data-index="4" aria-label="Letter 5: gray">·</button>
+            </div>
+            <p id="guess-error" class="field__error" role="alert" hidden></p>
+            <div class="tool__actions">
+              <button id="add-guess" class="btn btn--primary" type="button">Add guess</button>
+              <button id="clear-guesses" class="btn btn--ghost" type="button">Clear guesses</button>
+              <button id="load-example" class="btn btn--ghost" type="button">Load worked example (replaces clues)</button>
+            </div>
+            <ol id="guess-history" class="guess-history" aria-label="Previous guess history"></ol>
+          </section>
+
+          <section class="candidate-insights" id="candidate-insights" aria-labelledby="candidate-insights-heading" hidden>
+            <h2 id="candidate-insights-heading">What the remaining words tell us</h2>
+            <p id="insight-summary"></p>
+            <ul id="insight-words" class="insight-words" aria-label="Information-rich possible words"></ul>
+            <p class="field__help">Suggestions rank remaining candidate words by how many common letters they test. This is a simple heuristic, not a guarantee of an answer.</p>
+          </section>
+
           <div class="tool__results" aria-labelledby="results-heading">
             <h2 id="results-heading" class="sr-only">Results</h2>
             <p class="results__summary" id="results-summary"></p>
@@ -179,13 +210,7 @@
     </section>
 
     <!-- ===================== AD: HORIZONTAL ===================== -->
-    <div class="container">
-      <aside class="ad ad--horizontal" aria-label="Advertisement">
-        <span class="ad__label">Advertisement</span>
-        <div class="ad__slot">
-        </div>
-      </aside>
-    </div>
+    
 
     <!-- ===================== CONTENT + SIDEBAR ===================== -->
     <div class="container layout">
@@ -209,11 +234,6 @@
         </section>
 
         <!-- ===================== AD: IN-CONTENT ===================== -->
-        <aside class="ad ad--inline" aria-label="Advertisement">
-          <span class="ad__label">Advertisement</span>
-          <div class="ad__slot">
-          </div>
-        </aside>
 
         <section class="card prose" id="how-it-filters">
           <h2>How This Wordle Helper Filters Words</h2>
@@ -235,7 +255,7 @@
           <h3>Spend a guess to test letters</h3>
           <p>If you are stuck, a guess that tries several new letters can rule out more than chasing one near-match.</p>
           <h3>Mind doubled letters</h3>
-          <p>A letter can be both present and grayed when it appears twice — the helper handles this for you.</p>
+          <p>A letter can be both present and grayed when it appears twice — the whole-guess input above handles this exactly; individual clue fields are a simpler option.</p>
         </section>
 
         <section class="card prose" id="patterns">
@@ -291,7 +311,7 @@
         <section class="card prose" id="duplicates">
           <h2>The tricky part: duplicate letters</h2>
           <p>
-            The clue that trips up most solvers is a repeated letter. If the answer
+            A tricky case is a repeated letter. Enter complete guesses above for exact matching: If the answer
             contains one <strong>E</strong> but you guessed a word with two, Wordle may
             mark one E green or yellow and the other gray. Taken literally, that looks
             like "E is both in and not in the word." The helper resolves this the way
@@ -318,14 +338,6 @@
         </section>
 
       </div>
-
-      <aside class="layout__side" aria-label="Advertisement">
-        <div class="ad ad--sidebar">
-          <span class="ad__label">Advertisement</span>
-          <div class="ad__slot ad__slot--tall">
-          </div>
-        </div>
-      </aside>
     </div>
   </main>
 

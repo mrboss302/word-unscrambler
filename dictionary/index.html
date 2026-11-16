@@ -17,13 +17,11 @@
   <meta property="og:title" content="Dictionary and Word List | Word Puzzle Solver" />
   <meta property="og:description" content="How Word Puzzle Solver builds its word list and why results may differ from official game dictionaries." />
   <meta property="og:url" content="https://thewordpuzzlesolver.com/dictionary/" />
-  <meta property="og:image" content="https://thewordpuzzlesolver.com/og-word-unscrambler.png" />
 
   <!-- ===================== SEO: TWITTER CARD ===================== -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Dictionary and Word List | Word Puzzle Solver" />
   <meta name="twitter:description" content="How Word Puzzle Solver builds its word list and why results may differ from official game dictionaries." />
-  <meta name="twitter:image" content="https://thewordpuzzlesolver.com/og-word-unscrambler.png" />
 
   <link rel="stylesheet" href="/styles.css" />
 
@@ -139,6 +137,13 @@
             vice versa. If it matters, please check the rules and the official
             dictionary of your game before relying on a word.
           </p>
+        </section>
+
+        <section class="card prose legal-content">
+          <h2>How the search results are calculated</h2>
+          <p>All five tools use one shared word-search engine. The unscrambler counts repeated letters and only returns words that can be built from the available tiles. Its optional blank tiles each stand for one missing letter, and blank tiles receive zero points in the displayed letter score.</p>
+          <p>The Wordle Helper's whole-guess mode compares each candidate with your previous guesses using exact two-pass feedback: first marking green matches, then assigning available letters to yellow tiles. Remaining duplicate guesses become gray. This matters when a guessed letter appears more times than it does in the answer.</p>
+          <p>These behaviors have <a href="https://github.com/mrboss302/word-unscrambler/tree/main/tests">automated regression tests in the public source repository</a>. The dictionary is still a general-purpose word list and should not be treated as a certified game dictionary.</p>
         </section>
 
         <section class="card prose legal-content">

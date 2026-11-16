@@ -172,6 +172,23 @@ img { max-width: 100%; display: block; }
   margin-bottom: 22px;
 }
 
+/* Homepage: a real search, not a landing page of links alone. */
+.quick-start { max-width: 650px; display: grid; gap: 10px; }
+.quick-start > label { font-size: 1rem; font-weight: 800; }
+.quick-start__row { display: flex; flex-wrap: wrap; gap: 10px; }
+.quick-start input {
+  flex: 1 1 230px;
+  min-width: 0;
+  padding: 12px 13px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  text-transform: uppercase;
+}
+.quick-start .btn { flex: 0 0 auto; }
+.quick-start .field__help { margin: 0; }
+@media (max-width: 500px) { .quick-start .btn { flex: 1 1 100%; } }
+
 /* ============================ Tool ============================ */
 .tool { padding: 20px; box-shadow: var(--shadow); }
 .tool__form { display: grid; gap: 16px; }
@@ -311,46 +328,9 @@ img { max-width: 100%; display: block; }
   text-align: center;
 }
 
-/* ============================ Ads ============================ */
-.ad {
-  margin-block: 22px;
-  text-align: center;
-}
-.ad__label {
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  font-size: .66rem;
-  font-weight: 700;
-  color: #9aa7b4;
-  margin-bottom: 6px;
-}
-.ad__slot {
-  background: #f4f6f9;
-  border: 1px dashed #d4dce5;
-  border-radius: var(--radius-sm);
-  min-height: 92px;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
-.ad__slot--tall { min-height: 540px; }
-.ad--inline { margin-block: 4px 22px; }
-
-/* Reserve space for each AdSense <ins> before it loads, to avoid layout
-   shift (CLS). The .ad / .ad__label / .ad__slot wrappers above keep the
-   units visually separate from results, navigation, and content cards. */
-.ad-unit {
-  width: 100%;
-  min-height: 90px;
-}
-.ad-unit--horizontal { min-height: 90px; }
-.ad-unit--inline { min-height: 180px; }
-.ad-unit--sidebar { min-height: 540px; }
-
 /* ============================ Content layout ============================ */
 .layout { display: block; }
 .layout__main { display: grid; gap: 18px; }
-.layout__side { display: none; }   /* sidebar ad: desktop only */
 
 .prose h2 {
   font-size: 1.4rem;
@@ -547,14 +527,6 @@ a.tool-card:hover { text-decoration: none; border-color: var(--primary); box-sha
 @media (min-width: 1000px) {
   .hero { padding-block: 44px 26px; }
   .tile { width: 54px; height: 54px; font-size: 1.6rem; }
-  .layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 28px;
-    align-items: start;
-  }
-  .layout__side { display: block; }
-  .ad--sidebar { position: sticky; top: 86px; margin: 0; }
   .prose { padding: 28px; }
 }
 
@@ -563,13 +535,62 @@ a.tool-card:hover { text-decoration: none; border-color: var(--primary); box-sha
   * { transition: none !important; scroll-behavior: auto !important; }
 }
 
-/* ============================ Ads: review mode ============================
-   The site-wide AdSense loader (in each page <head>) is present for account
-   verification and Auto Ads, which Google places automatically AFTER the site
-   is approved. Until then the old manual ad containers are hidden so no empty
-   "Advertisement" boxes appear, and the main content spans the full width.
-   To return to manual ad units later: create real ad units in AdSense, delete
-   these rules, and add <ins> units with your real data-ad-slot IDs. */
-.ad,
-.layout__side { display: none !important; }
-@media (min-width: 1000px) { .layout { display: block; } }
+/* The unused manual ad regions have been removed from the HTML.
+   Keep the content readable at desktop widths without an empty sidebar. */
+.layout { display: block; }
+.layout__main { max-width: 900px; margin-inline: auto; }
+
+/* Interactive, keyboard-accessible Wordle guess history */
+.guess-lab,
+.candidate-insights {
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+  padding-top: 20px;
+}
+.guess-lab h2,
+.candidate-insights h2 { font-size: 1.1rem; margin-bottom: 8px; }
+.guess-lab > .field__help { margin-bottom: 14px; }
+.guess-tiles,
+.guess-history__tiles { display: flex; flex-wrap: nowrap; gap: 6px; }
+.guess-tiles { margin-block: 12px; }
+.guess-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 46px;
+  flex: 0 0 44px;
+  border: 2px solid #64748b;
+  border-radius: 7px;
+  font: 800 1.1rem var(--font);
+  text-transform: uppercase;
+}
+button.guess-tile { cursor: pointer; }
+button.guess-tile:hover { filter: brightness(1.08); }
+.guess-tile--gray { background: #566270; color: #fff; border-color: #566270; }
+.guess-tile--yellow { background: #eed080; color: #292314; border-color: #d1ac53; }
+.guess-tile--green { background: #137c63; color: #fff; border-color: #137c63; }
+.guess-history {
+  padding: 0;
+  margin: 16px 0 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.guess-history li { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.guess-history__remove { padding: 6px 10px; min-height: 40px; }
+.candidate-insights p { color: #344452; margin-bottom: 10px; }
+.insight-words {
+  list-style: none; display: grid; gap: 7px; padding: 0; margin: 12px 0;
+}
+.insight-words li {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; padding: 9px 12px; border: 1px solid var(--line);
+  border-radius: var(--radius-sm); background: var(--bg);
+}
+.insight-words strong { letter-spacing: .06em; }
+.insight-words span { color: var(--muted); font-size: .85rem; }
+
+@media (max-width: 380px) {
+  .guess-tile { width: 38px; height: 42px; flex-basis: 38px; }
+}

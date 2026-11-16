@@ -17,13 +17,11 @@
   <meta property="og:title" content="Word Puzzle Solver – Free Word Game Tools" />
   <meta property="og:description" content="Unscramble letters, find words, solve anagrams, narrow Wordle guesses, and explore 5-letter words with fast free tools." />
   <meta property="og:url" content="https://thewordpuzzlesolver.com/" />
-  <meta property="og:image" content="https://thewordpuzzlesolver.com/og-word-unscrambler.png" />
 
   <!-- ===================== SEO: TWITTER CARD ===================== -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Word Puzzle Solver – Free Word Game Tools" />
   <meta name="twitter:description" content="Unscramble letters, find words, solve anagrams, narrow Wordle guesses, and explore 5-letter words with fast free tools." />
-  <meta name="twitter:image" content="https://thewordpuzzlesolver.com/og-word-unscrambler.png" />
 
   <link rel="stylesheet" href="/styles.css" />
 
@@ -52,7 +50,6 @@
     "@type": "Organization",
     "name": "Word Puzzle Solver",
     "url": "https://thewordpuzzlesolver.com/",
-    "logo": "https://thewordpuzzlesolver.com/og-word-unscrambler.png",
     "description": "Free, browser-based tools for word games and letter puzzles."
   }
   </script>
@@ -131,6 +128,16 @@
           Unscramble letters, find words, solve anagrams, narrow Wordle guesses,
           and explore 5-letter words with fast free tools.
         </p>
+        <form class="quick-start card" action="/word-unscrambler/" method="get">
+          <label for="quick-letters">Try the unscrambler now</label>
+          <div class="quick-start__row">
+            <input id="quick-letters" name="letters" type="text" inputmode="latin"
+                   autocomplete="off" autocapitalize="characters" spellcheck="false"
+                   minlength="2" maxlength="16" required placeholder="Enter letters, e.g. LISTEN" />
+            <button type="submit" class="btn btn--primary">Find words</button>
+          </div>
+          <p class="field__help">Opens a full word search where you can refine by length, include letters, and add blank tiles.</p>
+        </form>
       </div>
     </section>
 
@@ -331,13 +338,6 @@
         </section>
 
       </div>
-
-      <aside class="layout__side" aria-label="Advertisement">
-        <div class="ad ad--sidebar">
-          <span class="ad__label">Advertisement</span>
-          <div class="ad__slot ad__slot--tall"></div>
-        </div>
-      </aside>
     </div>
   </main>
 
