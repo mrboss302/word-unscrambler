@@ -400,11 +400,15 @@ function countLetters(letters) {
    6. WORD VALIDATION — can this word be built from the available pool?
    Repeated letters are only allowed if the rack holds enough copies.
    ------------------------------------------------------------------------- */
-function canBuildWord(word, availableCounts) {
+function canBuildWord(word, availableCounts, wildcards) {
   const need = {};
+  let blanksUsed = 0;
+  const allowedBlanks = Math.max(0, Math.trunc(Number(wildcards) || 0));
   for (const ch of word) {
     need[ch] = (need[ch] || 0) + 1;
-    if (need[ch] > (availableCounts[ch] || 0)) return false;
+    blanksUsed += Math.max(0, need[ch] - (availableCounts[ch] || 0)) -
+      Math.max(0, need[ch] - 1 - (availableCounts[ch] || 0));
+    if (blanksUsed > allowedBlanks) return false;
   }
   return true;
 }
@@ -412,9 +416,15 @@ function canBuildWord(word, availableCounts) {
 /* -------------------------------------------------------------------------
    7. SCRABBLE-STYLE SCORE
    ------------------------------------------------------------------------- */
-function scoreWord(word) {
+function scoreWord(word, rackLetters) {
+  // With a rack, score only tiles actually owned; blank tiles score zero.
+  const rack = rackLetters === undefined ? null : countLetters(cleanLetters(rackLetters));
   let total = 0;
-  for (const ch of word) total += LETTER_SCORES[ch] || 0;
+  for (const ch of word) {
+    if (rack && !(rack[ch] > 0)) continue;
+    total += LETTER_SCORES[ch] || 0;
+    if (rack) rack[ch]--;
+  }
   return total;
 }
 
@@ -422,8 +432,9 @@ function scoreWord(word) {
    8. INCLUDE FILTER — word must contain every required letter at least once.
    ------------------------------------------------------------------------- */
 function wordContainsAll(word, required) {
-  for (const ch of required) if (!word.includes(ch)) return false;
-  return true;
+  const available = countLetters(word);
+  const needed = countLetters(required);
+  return Object.keys(needed).every((ch) => (available[ch] || 0) >= needed[ch]);
 }
 
 /* -------------------------------------------------------------------------
@@ -465,6 +476,40 @@ function matchesPattern(word, pattern) {
   return true;
 }
 
+/* Wordle feedback: exact two-pass scoring, including repeated letters.
+   Gray/yellow/green represents the result of one complete five-letter guess.
+   We use this same scorer to check candidate answers against past guesses. */
+function evaluateGuess(answer, guess) {
+  const target = cleanLetters(answer);
+  const attempt = cleanLetters(guess);
+  if (target.length !== 5 || attempt.length !== 5) {
+    throw new Error("Wordle feedback requires two five-letter words.");
+  }
+  const result = ["gray", "gray", "gray", "gray", "gray"];
+  const remaining = countLetters(target);
+  for (let i = 0; i < 5; i++) {
+    if (target[i] === attempt[i]) {
+      result[i] = "green";
+      remaining[attempt[i]]--;
+    }
+  }
+  for (let i = 0; i < 5; i++) {
+    if (result[i] !== "gray") continue;
+    if (remaining[attempt[i]] > 0) {
+      result[i] = "yellow";
+      remaining[attempt[i]]--;
+    }
+  }
+  return result;
+}
+function matchesGuessFeedback(answer, guess, feedback) {
+  if (!Array.isArray(feedback) || feedback.length !== 5 ||
+      !feedback.every((x) => ["gray", "yellow", "green"].includes(x))) return false;
+  if (cleanLetters(guess).length !== 5 || cleanLetters(answer).length !== 5) return false;
+  const actual = evaluateGuess(answer, guess);
+  return actual.every((x, i) => x === feedback[i]);
+}
+
 /* -------------------------------------------------------------------------
    12. SEARCH ENGINE — the single query function every page uses.
    All criteria are optional. Returns a de-duplicated, sorted array.
@@ -486,7 +531,8 @@ function matchesPattern(word, pattern) {
 function searchWords(criteria) {
   const c = criteria || {};
   const letters = cleanLetters(c.letters || "");
-  const counts = letters ? countLetters(letters) : null;
+  const counts = letters || c.wildcards ? countLetters(letters) : null;
+  const wildcards = Math.min(2, Math.max(0, Math.trunc(Number(c.wildcards) || 0)));
   const include = cleanLetters(c.include || "");
   const exclude = cleanLetters(c.exclude || "");
   const starts = cleanLetters(c.startsWith || "");
@@ -510,7 +556,7 @@ function searchWords(criteria) {
   for (const word of WORD_LIST) {
     if (fixedLength && word.length !== fixedLength) continue;
     if (!matchesLength(word, lengthMode)) continue;
-    if (counts && !canBuildWord(word, counts)) continue;
+    if (counts && !canBuildWord(word, counts, wildcards)) continue;
     if (include && !wordContainsAll(word, include)) continue;
     if (exclude && !wordExcludesAll(word, exclude, protectedStr)) continue;
     if (starts && !word.startsWith(starts)) continue;
@@ -529,18 +575,19 @@ function searchWords(criteria) {
   }
 
   const unique = Array.from(new Set(out));
-  return sortWords(unique, c.sort);
+  return sortWords(unique, c.sort, wildcards && letters ? (word) => scoreWord(word, letters) : undefined);
 }
 
 /* -------------------------------------------------------------------------
    SORTING — "alpha" | "scoreDesc" | "lengthDesc" (default).
    Returns the same array, sorted in place.
    ------------------------------------------------------------------------- */
-function sortWords(words, mode) {
+function sortWords(words, mode, scoreFn) {
+  const getScore = scoreFn || scoreWord;
   if (mode === "alpha") {
     words.sort((a, b) => a.localeCompare(b));
   } else if (mode === "scoreDesc") {
-    words.sort((a, b) => (scoreWord(b) - scoreWord(a)) || a.localeCompare(b));
+    words.sort((a, b) => (getScore(b) - getScore(a)) || a.localeCompare(b));
   } else {
     words.sort((a, b) => (b.length - a.length) || a.localeCompare(b));
   }
@@ -561,7 +608,7 @@ function groupByLength(words) {
 /* =========================================================================
    14. RENDER HELPERS  (no-ops under Node — they need a DOM)
    ========================================================================= */
-function createWordCard(word) {
+function createWordCard(word, scoreFn) {
   const li = document.createElement("li");
   li.className = "word";
   const text = document.createElement("span");
@@ -570,7 +617,7 @@ function createWordCard(word) {
   const score = document.createElement("span");
   score.className = "word__score";
   score.title = "Scrabble score";
-  score.textContent = scoreWord(word);
+  score.textContent = (scoreFn || scoreWord)(word);
   li.appendChild(text);
   li.appendChild(score);
   return li;
@@ -585,7 +632,7 @@ function renderEmpty(resultsEl, message) {
 }
 
 /* Grouped, longest-first view (Word Solver, Anagram Generator). */
-function renderGrouped(resultsEl, words) {
+function renderGrouped(resultsEl, words, scoreFn) {
   resultsEl.innerHTML = "";
   const groups = groupByLength(words);
   const lengths = Object.keys(groups).map(Number).sort((a, b) => b - a);
@@ -605,14 +652,14 @@ function renderGrouped(resultsEl, words) {
 
     const list = document.createElement("ul");
     list.className = "wordgroup__list";
-    for (const word of groups[len]) list.appendChild(createWordCard(word));
+    for (const word of groups[len]) list.appendChild(createWordCard(word, scoreFn));
     group.appendChild(list);
     resultsEl.appendChild(group);
   }
 }
 
 /* Flat, single-list view (Wordle Helper, 5 Letter Words). */
-function renderFlat(resultsEl, words, label) {
+function renderFlat(resultsEl, words, label, scoreFn) {
   resultsEl.innerHTML = "";
   const group = document.createElement("section");
   group.className = "wordgroup";
@@ -628,7 +675,7 @@ function renderFlat(resultsEl, words, label) {
 
   const list = document.createElement("ul");
   list.className = "wordgroup__list";
-  for (const word of words) list.appendChild(createWordCard(word));
+  for (const word of words) list.appendChild(createWordCard(word, scoreFn));
   group.appendChild(list);
   resultsEl.appendChild(group);
 }
@@ -657,6 +704,7 @@ function createResultsView(refs) {
   let mode = "grouped";
   let flatLabel = "Matches";
   let leadSpans = "";
+  let scoreFn = scoreWord;
 
   const fmt = (n) => n.toLocaleString("en-US");
 
@@ -677,7 +725,7 @@ function createResultsView(refs) {
       section.appendChild(h);
       const ul = document.createElement("ul");
       ul.className = "wordgroup__list";
-      for (const w of groups[len]) ul.appendChild(createWordCard(w));
+      for (const w of groups[len]) ul.appendChild(createWordCard(w, scoreFn));
       section.appendChild(ul);
       frag.appendChild(section);
     }
@@ -698,7 +746,7 @@ function createResultsView(refs) {
     section.appendChild(h);
     const ul = document.createElement("ul");
     ul.className = "wordgroup__list";
-    for (const w of slice) ul.appendChild(createWordCard(w));
+    for (const w of slice) ul.appendChild(createWordCard(w, scoreFn));
     section.appendChild(ul);
     frag.appendChild(section);
     return frag;
@@ -749,6 +797,7 @@ function createResultsView(refs) {
       mode = opts.mode || "grouped";
       flatLabel = opts.flatLabel || "Matches";
       leadSpans = opts.leadSpans || "";
+      scoreFn = opts.scoreFn || scoreWord;
       visible = Math.min(RESULTS_PAGE_SIZE, full.length);
 
       if (full.length === 0) {
@@ -778,6 +827,7 @@ const WordTools = {
   LETTER_SCORES,
   cleanLetters, cleanPattern, countLetters, canBuildWord, scoreWord,
   wordContainsAll, wordExcludesAll, matchesLength, matchesPattern,
+  evaluateGuess, matchesGuessFeedback,
   searchWords, sortWords, groupByLength,
   createWordCard, renderEmpty, renderGrouped, renderFlat, createResultsView,
   RESULTS_PAGE_SIZE
