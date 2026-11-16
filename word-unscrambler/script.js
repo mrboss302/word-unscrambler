@@ -22,6 +22,7 @@
     els.letters = document.getElementById("letters");
     els.required = document.getElementById("required");
     els.length = document.getElementById("length");
+    els.blanks = document.getElementById("blanks");
     els.sort = document.getElementById("sort");
     els.clear = document.getElementById("clear-btn");
     els.error = document.getElementById("form-error");
@@ -54,9 +55,10 @@
   function solve() {
     clearError();
     const letters = T.cleanLetters(els.letters.value);
+    const blanks = Number(els.blanks.value) || 0;
 
-    if (letters.length < 2) {
-      showError("Enter at least 2 letters (A–Z) to unscramble.");
+    if (letters.length + blanks < 2) {
+      showError("Enter at least 2 tiles in total (letters plus blanks).");
       view.clear();
       return;
     }
@@ -65,6 +67,7 @@
     const cfg = viewConfig();
     const words = T.searchWords({
       letters,
+      wildcards: blanks,
       include: T.cleanLetters(els.required.value),
       lengthMode: els.length.value,
       sort: cfg.sort
@@ -73,13 +76,15 @@
     const longest = words.reduce((a, b) => (b.length > a.length ? b : a), "");
     const lead =
       `<span><strong>${words.length.toLocaleString("en-US")}</strong> word${words.length === 1 ? "" : "s"} found</span>` +
-      `<span><strong>${letters.length}</strong> letters used</span>` +
+      `<span><strong>${letters.length + blanks}</strong> tiles available</span>` +
+      (blanks ? `<span><strong>${blanks}</strong> blank tile${blanks === 1 ? "" : "s"}</span>` : "") +
       `<span>Longest: <strong>${longest ? longest.toUpperCase() : "—"}</strong></span>`;
 
     view.render(words, {
       mode: cfg.mode,
       flatLabel: cfg.flatLabel,
       leadSpans: lead,
+      scoreFn: blanks ? (word) => T.scoreWord(word, letters) : undefined,
       emptyMessage: "No words matched those letters. Try removing the length filter, " +
         "clearing the required letters, or adding a few more tiles."
     });
@@ -89,6 +94,7 @@
     els.letters.value = "";
     els.required.value = "";
     els.length.value = "any";
+    els.blanks.value = "0";
     if (els.sort) els.sort.value = "length";
     view.clear();
     clearError();
