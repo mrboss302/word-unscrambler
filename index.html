@@ -128,6 +128,16 @@
           Unscramble letters, find words, solve anagrams, narrow Wordle guesses,
           and explore 5-letter words with fast free tools.
         </p>
+        <form class="quick-start card" action="/word-unscrambler/" method="get">
+          <label for="quick-letters">Try the unscrambler now</label>
+          <div class="quick-start__row">
+            <input id="quick-letters" name="letters" type="text" inputmode="latin"
+                   autocomplete="off" autocapitalize="characters" spellcheck="false"
+                   minlength="2" maxlength="16" required placeholder="Enter letters, e.g. LISTEN" />
+            <button type="submit" class="btn btn--primary">Find words</button>
+          </div>
+          <p class="field__help">Opens a full word search where you can refine by length, include letters, and add blank tiles.</p>
+        </form>
       </div>
     </section>
 
