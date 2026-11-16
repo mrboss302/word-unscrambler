@@ -328,46 +328,9 @@ img { max-width: 100%; display: block; }
   text-align: center;
 }
 
-/* ============================ Ads ============================ */
-.ad {
-  margin-block: 22px;
-  text-align: center;
-}
-.ad__label {
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  font-size: .66rem;
-  font-weight: 700;
-  color: #9aa7b4;
-  margin-bottom: 6px;
-}
-.ad__slot {
-  background: #f4f6f9;
-  border: 1px dashed #d4dce5;
-  border-radius: var(--radius-sm);
-  min-height: 92px;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
-.ad__slot--tall { min-height: 540px; }
-.ad--inline { margin-block: 4px 22px; }
-
-/* Reserve space for each AdSense <ins> before it loads, to avoid layout
-   shift (CLS). The .ad / .ad__label / .ad__slot wrappers above keep the
-   units visually separate from results, navigation, and content cards. */
-.ad-unit {
-  width: 100%;
-  min-height: 90px;
-}
-.ad-unit--horizontal { min-height: 90px; }
-.ad-unit--inline { min-height: 180px; }
-.ad-unit--sidebar { min-height: 540px; }
-
 /* ============================ Content layout ============================ */
 .layout { display: block; }
 .layout__main { display: grid; gap: 18px; }
-.layout__side { display: none; }   /* sidebar ad: desktop only */
 
 .prose h2 {
   font-size: 1.4rem;
@@ -564,14 +527,6 @@ a.tool-card:hover { text-decoration: none; border-color: var(--primary); box-sha
 @media (min-width: 1000px) {
   .hero { padding-block: 44px 26px; }
   .tile { width: 54px; height: 54px; font-size: 1.6rem; }
-  .layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 28px;
-    align-items: start;
-  }
-  .layout__side { display: block; }
-  .ad--sidebar { position: sticky; top: 86px; margin: 0; }
   .prose { padding: 28px; }
 }
 
