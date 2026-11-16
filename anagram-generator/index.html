@@ -145,6 +145,15 @@
             </div>
 
             <div class="field">
+              <label for="anagram-mode">Type of anagram</label>
+              <select id="anagram-mode" name="anagram-mode">
+                <option value="all">Full and shorter anagrams</option>
+                <option value="full">Full anagrams only (use every letter)</option>
+              </select>
+              <p class="field__help">Full anagrams use all letters exactly once. This generator finds single words, not multi-word phrases.</p>
+            </div>
+
+            <div class="field">
               <label for="include">Must include <span class="field__opt">(optional)</span></label>
               <input type="text" id="include" name="include" autocomplete="off"
                      autocapitalize="characters" spellcheck="false" placeholder="e.g. s"
@@ -247,16 +256,14 @@
             There are two kinds of answer this tool produces, and knowing the
             difference helps you read the results. A <strong>full anagram</strong> uses
             every letter of your input exactly once — <em>listen</em> and
-            <em>silent</em> are full anagrams because both use the same seven letters.
+            <em>silent</em> are full anagrams because both use the same six letters.
             A <strong>sub-anagram</strong> uses only some of the letters, like
             <em>tin</em> or <em>nest</em> from those same seven. Full anagrams are the
             prize; sub-anagrams are the supporting cast that often matter more in
             actual games, where you rarely need to spend every tile.
           </p>
           <p>
-            Because the generator returns both and groups them by length, the longest
-            group is where any full anagrams will appear, and the shorter groups give
-            you the playable sub-anagrams.
+            The filter above lets you show full anagrams only, or include shorter words. When both are selected, the longest group contains full anagrams when any exist. This tool currently creates single words rather than multi-word phrases.
           </p>
         </section>
 
