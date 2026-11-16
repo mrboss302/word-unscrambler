@@ -172,6 +172,23 @@ img { max-width: 100%; display: block; }
   margin-bottom: 22px;
 }
 
+/* Homepage: a real search, not a landing page of links alone. */
+.quick-start { max-width: 650px; display: grid; gap: 10px; }
+.quick-start > label { font-size: 1rem; font-weight: 800; }
+.quick-start__row { display: flex; flex-wrap: wrap; gap: 10px; }
+.quick-start input {
+  flex: 1 1 230px;
+  min-width: 0;
+  padding: 12px 13px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  text-transform: uppercase;
+}
+.quick-start .btn { flex: 0 0 auto; }
+.quick-start .field__help { margin: 0; }
+@media (max-width: 500px) { .quick-start .btn { flex: 1 1 100%; } }
+
 /* ============================ Tool ============================ */
 .tool { padding: 20px; box-shadow: var(--shadow); }
 .tool__form { display: grid; gap: 16px; }
