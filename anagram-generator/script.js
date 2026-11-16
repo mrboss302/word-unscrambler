@@ -11,6 +11,7 @@
     els.form = document.getElementById("anagram-form");
     els.phrase = document.getElementById("phrase");
     els.minlen = document.getElementById("minlen");
+    els.mode = document.getElementById("anagram-mode");
     els.length = document.getElementById("length");
     els.include = document.getElementById("include");
     els.sort = document.getElementById("sort");
@@ -59,11 +60,13 @@
     // Minimum-length filter (applies on top of the exact-length dropdown).
     const min = Number(els.minlen.value) || 2;
     words = words.filter((w) => w.length >= min);
+    // A full anagram uses every letter supplied exactly once.
+    if (els.mode.value === "full") words = words.filter((w) => w.length === letters.length);
 
     const longest = words.reduce((a, b) => (b.length > a.length ? b : a), "");
     const lead =
       `<span><strong>${words.length.toLocaleString("en-US")}</strong> anagram${words.length === 1 ? "" : "s"} found</span>` +
-      `<span><strong>${letters.length}</strong> letters used</span>` +
+      `<span><strong>${letters.length}</strong> letters available</span>` +
       `<span>Longest: <strong>${longest ? longest.toUpperCase() : "—"}</strong></span>`;
 
     view.render(words, {
