@@ -246,6 +246,9 @@ a.tool-card:hover { transform: translateY(-4px); border-color: #8eae8d; box-shad
   .site-nav ul { width: max-content; }
   .hero__art { padding: 34px 30px 34px 0; }
 }
+@media (min-width: 561px) and (max-width: 920px) {
+  .site-footer__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 780px) {
   .hero__panel { grid-template-columns: 1fr; }
   .hero__copy { padding: 45px 32px 30px; }
