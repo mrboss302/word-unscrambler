@@ -26,6 +26,7 @@
     els.guessTiles = get("guess-tiles");
     els.addGuess = get("add-guess");
     els.clearGuesses = get("clear-guesses");
+    els.loadExample = get("load-example");
     els.guessError = get("guess-error");
     els.guessHistory = get("guess-history");
     els.insights = get("candidate-insights");
@@ -253,6 +254,17 @@
       paintDraft();
     });
     els.addGuess.addEventListener("click", addGuess);
+    els.loadExample.addEventListener("click", () => {
+      els.form.reset();
+      guesses = [{word: "eerie", feedback: ["yellow", "green", "gray", "gray", "gray"]}];
+      draftColors = Array(5).fill("gray");
+      els.guessInput.value = "";
+      clearError();
+      clearGuessError();
+      paintDraft();
+      paintHistory();
+      solve();
+    });
     els.clearGuesses.addEventListener("click", () => {
       guesses = [];
       paintHistory();
