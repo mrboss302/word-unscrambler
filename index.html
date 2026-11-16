@@ -24,6 +24,7 @@
   <meta name="twitter:description" content="Unscramble letters, find words, solve anagrams, narrow Wordle guesses, and explore 5-letter words with fast free tools." />
 
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/assets/css/refresh.css" />
 
   <meta name="google-adsense-account" content="ca-pub-3840656918521680" />
   <!-- Google AdSense loader (site-wide, enables Auto Ads after approval). -->
@@ -108,73 +109,86 @@
 
   <main id="main">
     <!-- ============================ HERO ============================ -->
-    <section class="hero">
+    <section class="hero hero--home" aria-labelledby="home-heading">
       <div class="container">
-        <p class="eyebrow">Free word game tools</p>
-
-        <div class="hero__tiles" aria-hidden="true">
-          <span class="tile" data-pts="4">W</span>
-          <span class="tile" data-pts="1">O</span>
-          <span class="tile" data-pts="1">R</span>
-          <span class="tile" data-pts="2">D</span>
-          <span class="tile" data-pts="3">P</span>
-          <span class="tile" data-pts="1">L</span>
-          <span class="tile" data-pts="1">A</span>
-          <span class="tile" data-pts="4">Y</span>
-        </div>
-
-        <h1 class="hero__title">Free Word Puzzle Solver Tools</h1>
-        <p class="hero__lead">
-          Unscramble letters, find words, solve anagrams, narrow Wordle guesses,
-          and explore 5-letter words with fast free tools.
-        </p>
-        <form class="quick-start card" action="/word-unscrambler/" method="get">
-          <label for="quick-letters">Try the unscrambler now</label>
-          <div class="quick-start__row">
-            <input id="quick-letters" name="letters" type="text" inputmode="latin"
-                   autocomplete="off" autocapitalize="characters" spellcheck="false"
-                   minlength="2" maxlength="16" required placeholder="Enter letters, e.g. LISTEN" />
-            <button type="submit" class="btn btn--primary">Find words</button>
+        <div class="hero__panel">
+          <div class="hero__copy">
+            <p class="eyebrow">Your free word-play toolkit</p>
+            <h1 id="home-heading" class="hero__title">Every letter holds <em>a possibility.</em></h1>
+            <p class="hero__lead">
+              Unscramble letters, uncover anagrams, solve tricky word games, and find your
+              next great play. Fast, free, and right in your browser.
+            </p>
+            <form class="quick-start card" action="/word-unscrambler/" method="get">
+              <label for="quick-letters">Your letters</label>
+              <div class="quick-start__row">
+                <input id="quick-letters" name="letters" type="text" inputmode="latin"
+                       autocomplete="off" autocapitalize="characters" spellcheck="false"
+                       minlength="2" maxlength="16" required placeholder="Try LISTEN" />
+                <button type="submit" class="btn btn--primary">Find words ↗</button>
+              </div>
+              <p class="field__help">Search and refine results by length, score, and blank tiles.</p>
+            </form>
+            <p class="hero__microcopy"><span>No signup</span><span>Instant answers</span><span>Made for word lovers</span></p>
           </div>
-          <p class="field__help">Opens a full word search where you can refine by length, include letters, and add blank tiles.</p>
-        </form>
+          <div class="hero__art" aria-hidden="true">
+            <div class="puzzle-demo">
+              <div class="puzzle-demo__top"><span>The anagram effect</span><strong>01 / 03</strong></div>
+              <p class="puzzle-demo__label">Start with</p>
+              <div class="puzzle-demo__row">
+                <span class="puzzle-demo__tile">L</span><span class="puzzle-demo__tile">I</span>
+                <span class="puzzle-demo__tile">S</span><span class="puzzle-demo__tile">T</span>
+                <span class="puzzle-demo__tile">E</span><span class="puzzle-demo__tile">N</span>
+              </div>
+              <div class="puzzle-demo__arrow">↓</div>
+              <p class="puzzle-demo__label">Discover</p>
+              <div class="puzzle-demo__row puzzle-demo__row--answer">
+                <span class="puzzle-demo__tile">S</span><span class="puzzle-demo__tile">I</span>
+                <span class="puzzle-demo__tile">L</span><span class="puzzle-demo__tile">E</span>
+                <span class="puzzle-demo__tile">N</span><span class="puzzle-demo__tile">T</span>
+              </div>
+              <p class="puzzle-demo__foot">Same letters. Another way to see them.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ============================ FEATURED TOOLS ============================ -->
-    <section class="container" aria-labelledby="featured-heading" style="margin-bottom:28px;">
-      <h2 id="featured-heading" class="prose" style="font-size:1.4rem;font-weight:800;margin-bottom:14px;">Featured tools</h2>
+    <section class="container featured-tools" aria-labelledby="featured-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Built for your next move</p>
+          <h2 id="featured-heading">Five tools. Endless words.</h2>
+        </div>
+        <p>From a stubborn tile rack to a five-letter mystery, there's a smart way forward.</p>
+      </div>
       <ul class="tools-grid tools-grid--3">
-        <li>
-          <a class="tool-card" href="/word-unscrambler/">
-            <span class="tool-card__name">Word Unscrambler</span>
-            <span class="tool-card__desc">Turn a jumble of letters into every word you can spell, with Scrabble scores.</span>
-          </a>
-        </li>
-        <li>
-          <a class="tool-card" href="/word-solver/">
-            <span class="tool-card__name">Word Solver</span>
-            <span class="tool-card__desc">Find words from your letters with prefix, suffix, contains, and length filters.</span>
-          </a>
-        </li>
-        <li>
-          <a class="tool-card" href="/wordle-helper/">
-            <span class="tool-card__name">Wordle Helper</span>
-            <span class="tool-card__desc">Narrow five-letter guesses using green, yellow, and gray letter clues.</span>
-          </a>
-        </li>
-        <li>
-          <a class="tool-card" href="/anagram-generator/">
-            <span class="tool-card__name">Anagram Generator</span>
-            <span class="tool-card__desc">Discover anagrams and sub-anagrams hidden in letters, names, and phrases.</span>
-          </a>
-        </li>
-        <li>
-          <a class="tool-card" href="/5-letter-words/">
-            <span class="tool-card__name">5 Letter Words</span>
-            <span class="tool-card__desc">Browse and filter five-letter words for Wordle, crosswords, and word games.</span>
-          </a>
-        </li>
+        <li><a class="tool-card" href="/word-unscrambler/">
+          <span class="tool-card__icon" aria-hidden="true">Aa</span>
+          <span class="tool-card__name">Word Unscrambler</span>
+          <span class="tool-card__desc">Make the most of every letter, including blank tiles.</span>
+        </a></li>
+        <li><a class="tool-card" href="/word-solver/">
+          <span class="tool-card__icon" aria-hidden="true">↗</span>
+          <span class="tool-card__name">Word Solver</span>
+          <span class="tool-card__desc">Find words using precise filters and patterns.</span>
+        </a></li>
+        <li><a class="tool-card" href="/wordle-helper/">
+          <span class="tool-card__icon" aria-hidden="true">5</span>
+          <span class="tool-card__name">Wordle Helper</span>
+          <span class="tool-card__desc">Turn green, yellow, and gray clues into promising guesses.</span>
+        </a></li>
+        <li><a class="tool-card" href="/anagram-generator/">
+          <span class="tool-card__icon" aria-hidden="true">∞</span>
+          <span class="tool-card__name">Anagram Generator</span>
+          <span class="tool-card__desc">Discover surprising words in names and phrases.</span>
+        </a></li>
+        <li><a class="tool-card" href="/5-letter-words/">
+          <span class="tool-card__icon" aria-hidden="true">••</span>
+          <span class="tool-card__name">5 Letter Words</span>
+          <span class="tool-card__desc">Browse and filter five-letter words for any puzzle.</span>
+        </a></li>
       </ul>
     </section>
 

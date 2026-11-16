@@ -30,6 +30,7 @@ for (const loc of locs) {
   assert.match(html, /<h1\b[^>]*>/, filename + " is missing a primary heading");
   assert.ok(html.includes('<link rel="canonical" href="' + loc + '"'),
     filename + " has an incorrect canonical URL");
+  assert.match(html, /<link rel="stylesheet" href="\/assets\/css\/refresh\.css"\s*\/>/, filename + " is missing the shared refreshed theme");
   assert.ok(!html.includes("og-word-unscrambler.png"), filename + " has a missing social image");
   assert.ok(!html.includes("This email address is a placeholder"),
     filename + " still advertises a placeholder email");
@@ -46,5 +47,7 @@ for (const loc of locs) {
 
 assert.equal(new Set(locs).size, locs.length, "Sitemap contains duplicate page URLs");
 assert.ok(visited >= 15, "Too few substantive pages in sitemap");
+const css = fs.readFileSync(path.join(root, "assets/css/refresh.css"), "utf8");
+assert.ok(css.includes(".hero__panel") && css.includes(".site-nav") && css.includes(".tool"), "Theme is missing core layout hooks");
 assert.ok(fs.existsSync(path.join(root, "ads.txt")), "Missing ads.txt");
 console.log("Site checks passed for " + visited + " pages; internal resources exist.");
