@@ -107,6 +107,19 @@
     els.form.addEventListener("submit", (e) => { e.preventDefault(); solve(); });
     els.clear.addEventListener("click", clearAll);
     els.sort.addEventListener("change", () => { if (els.letters.value) solve(); });
+
+    // The homepage quick-search and SearchAction metadata both use ?letters=.
+    // Restrict URL input to plain letters before applying or displaying it.
+    const params = new URLSearchParams(window.location.search);
+    const initialLetters = T.cleanLetters(params.get("letters") || "").slice(0, 16);
+    if (initialLetters.length >= 2) {
+      els.letters.value = initialLetters.toUpperCase();
+      const initialBlanks = Number(params.get("blanks"));
+      if (Number.isInteger(initialBlanks) && initialBlanks >= 0 && initialBlanks <= 2) {
+        els.blanks.value = String(initialBlanks);
+      }
+      solve();
+    }
   }
 
   if (typeof document !== "undefined") {
